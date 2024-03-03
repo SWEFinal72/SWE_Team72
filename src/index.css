@@ -1,4 +1,6 @@
 
+
+
 /* Styling for the whole navigation bar like background color and more */
 .navbar {
   display: flex;
@@ -17,5 +19,13 @@
 .nav-links-container a {
   color: #FFFFFF;
 }
-
-
+.Home-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20vh;
+  margin-right: 20vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  background-color: #03C03C;
+}

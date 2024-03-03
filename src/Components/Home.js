@@ -1,8 +1,10 @@
+import AvaliablityTable from "./AvaliablityTable";
 function Home() {
     return(
-        <p>
-            homepage.
-        </p>
+        <div className="Home-div">
+            
+            <AvaliablityTable />
+        </div>
     )
 }
 
