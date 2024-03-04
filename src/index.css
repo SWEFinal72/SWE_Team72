@@ -1,12 +1,11 @@
 
-
-
 /* Styling for the whole navigation bar like background color and more */
 .navbar {
   display: flex;
   align-items: center;
   background-color: #03C03C;
-  padding: 10px 20px;
+  height: 60px;
+  gap: 25px;
 }
 
 /* Styling for the items within the nav-links-container */
@@ -18,7 +17,10 @@
 /* Styles each nav link color white */
 .nav-links-container a {
   color: #FFFFFF;
+  gap: 15px;
 }
+
+
 .Home-div{
   display: flex;
   justify-content: center;
