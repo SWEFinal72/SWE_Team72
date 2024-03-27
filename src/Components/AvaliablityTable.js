@@ -4,7 +4,7 @@ import { Container, Form, Button } from 'react-bootstrap';
 
 function AvailabilityTable() {
   return (
-    <Container style={{ backgroundColor: "limegreen", width: '100%', display: "flex", justifyContent: "center", alignItems: 'center', minHeight: '30vh' }}>
+    <Container style={{ backgroundColor: "limegreen", width: '80%', display: "flex", justifyContent: "center", alignItems: 'center', minHeight: '30vh' }}>
       <Form style={{ display: 'block', padding: '20px', width: '80%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', gap: "40px", marginBottom: '20px' }}>
           <Form.Control style={{ width: '50%' }} type="text" placeholder="Pickup Location" />

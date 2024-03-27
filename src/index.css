@@ -1,24 +1,38 @@
 
+/* .navbar-main{
+  display: "flex";
+  justify-content: "space-between";
+  width: '100%';
+  alignItems:"left" ;
+} */
+
+
 
 
 /* Styling for the whole navigation bar like background color and more */
-.navbar {
+ .navbar {
   display: flex;
   align-items: center;
   background-color: #03C03C;
-  padding: 10px 20px;
-}
-
-/* Styling for the items within the nav-links-container */
-.nav-links-container{
-  display: flex;
+  height: 60px;
   gap: 25px;
 }
 
+/* Styling for the items within the nav-links-container */
+ .nav-links-container{
+  display: flex;
+  gap: 25px;
+} 
+
 /* Styles each nav link color white */
 .nav-links-container a {
+  display: flex;
   color: #FFFFFF;
-}
+  gap: 15px;
+} 
+
+
+
 .Home-div{
   display: flex;
   justify-content: center;
