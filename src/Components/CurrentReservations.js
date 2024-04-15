@@ -1,8 +1,14 @@
 function CurrentReservations() {
+    console.log("Current Reservations Page")
+    
+      
     return(
-        <p>
-            current reservations.
-        </p>
+        <div>
+
+            <h1>Current Reservations</h1>
+            
+        </div>
+        
     )
 }
 
