@@ -19,10 +19,11 @@ export const carsApiSlice = apiSlice.injectEndpoints({
           },
           
           transformResponse: responseData => {
-              const loadedcars = responseData.map(user => {
+              const loadedcars = responseData.map(cars => {
                 //this a mongodb connection so we need to change the id to user._id  
-                  user.id = user._id
-                  return user
+                  cars.id = cars._id
+
+                  return cars
               });
               return carsAdapter.setAll(initialState, loadedcars)
           },

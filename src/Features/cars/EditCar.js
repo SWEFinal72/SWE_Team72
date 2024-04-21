@@ -1,7 +1,7 @@
 const EditCar = () => {
     return (
         <div>
-            <h1>Edit Car</h1>
+            <h1>Edit vehicle</h1>
         </div>
     )
 }

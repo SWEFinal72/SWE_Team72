@@ -14,25 +14,25 @@ const Car = ({ carId }) => {
         const carStatus = car.rented ? '' : 'table__cell--inactive';
 
         return (
-            <tr className="table__row car">
-                <td className={`table__cell ${carStatus}`}>{car.carInfo[0]["car-brand"]}</td>
-                <td className={`table__cell ${carStatus}`}>{car.carInfo[0]["model"]}</td>
-                <td className={`table__cell ${carStatus}`}>{car.carInfo[0]["miles"]}</td>
-                <td className={`table__cell ${carStatus}`}>{car.carInfo[0]["location"]}</td>
-                <td className={`table__cell ${carStatus}`}>{car.carInfo[0]["cost-mile"]}</td>
-                <td className={`table__cell ${carStatus}`}>{car.carInfo[0]["cost-day"]}</td>
-                <td className={`table__cell ${carStatus}`}>{car.carInfo[0]["pickup"]}</td>
-                <td className={`table__cell ${carStatus}`}>
+            <div className={`car-details ${carStatus}`}>
+                <div className="car-detail">{car.carInfo[0]["car-brand"]}</div>
+                <div className="car-detail">{car.carInfo[0]["model"]}</div>
+                <div className="car-detail">{car.carInfo[0]["miles"]}</div>
+                <div className="car-detail">{car.carInfo[0]["location"]}</div>
+                <div className="car-detail">{car.carInfo[0]["cost-mile"]}</div>
+                <div className="car-detail">{car.carInfo[0]["cost-day"]}</div>
+                <div className="car-detail">{car.carInfo[0]["pickup"]}</div>
+                <div className="car-detail">
                     <button
                         className="icon-button table__button"
                         onClick={handleEdit}
                     >
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
-                </td>
-            </tr>
+                </div>
+            </div>
         );
     } else return null;
 }
 
-export default Car
+export default Car;

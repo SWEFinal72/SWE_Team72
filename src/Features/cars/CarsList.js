@@ -34,7 +34,7 @@ const CarsList = () => {
 
         content = (
             <table className="table table--cars">
-                <thead className="table__thead">
+                {/* <thead className="table__thead">
                     <tr>
                         <th scope="col" className="table__th car__make">Make</th>
                         <th scope="col" className="table__th car__model">Model</th>
@@ -43,10 +43,10 @@ const CarsList = () => {
                         <th scope="col" className="table__th car__cost-mile">Cost per Mile</th>
                         <th scope="col" className="table__th car__cost-day">Cost per Day</th>
                         <th scope="col" className="table__th car__pickup">Pickup Date</th>
-                        {/* Add more th elements for other properties */}
+                        
                         <th scope="col" className="table__th car__edit">Edit</th>
                     </tr>
-                </thead>
+                </thead> */}
                 <tbody>
                     {tableContent}
                 </tbody>

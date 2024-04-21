@@ -113,3 +113,70 @@ tr {
   padding: 0.25em;
   margin-bottom: 0.5em;
 }
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table__thead th {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.table__th {
+  text-align: left;
+}
+
+.table__th,
+.table__cell {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+.table__cell--inactive {
+  color: #999;
+}
+
+.errmsg {
+  color: red;
+}
+
+.table__row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table__row:hover {
+  background-color: #e6e6e6;
+}
+
+.car-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.car-info__item {
+  flex: 1;
+  margin-right: 10px;
+}
+
+
+
+.car-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px; /* Increase the margin between each car entity */
+}
+
+.car-details.table__cell--inactive {
+  opacity: 0.5;
+}
+
+.car-detail {
+  flex: 1;
+}
