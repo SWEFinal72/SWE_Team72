@@ -1,6 +1,6 @@
 
 import { useParams } from "react-router-dom"
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from "react-router-dom"
@@ -10,11 +10,14 @@ import { useSelector } from "react-redux"
 import { selectCarById } from "./carsApiSlice"
 
 import { selectAllUsers } from "../users/usersApiSlice"
+import useAuth from "../../hooks/useAuth"
 
-const EditCarForm = ({cars,users =[]}) => {
- 
+const EditCarForm = ({ cars, users = [] }) => {
+
+    const { isEmployee, isAdmin } = useAuth()
+
     const [updateCars
-        ,{
+        , {
             isLoading,
             isSuccess,
             isError,
@@ -23,7 +26,7 @@ const EditCarForm = ({cars,users =[]}) => {
     ] = useUpdateCarMutation()
 
     const [deleteCar
-        ,{
+        , {
             isSuccess: isDelSuccess,
             isError: isDelError,
             error: delerror
@@ -32,13 +35,13 @@ const EditCarForm = ({cars,users =[]}) => {
 
     const navigate = useNavigate()
 
-    const[brand, setBrand] = useState(cars.brand)
-    const[model, setModel] = useState(cars.model)
-    const[year, setYear] = useState(cars.year)
-    const[price, setPrice] = useState(cars.price)
-    const[location, setLocation] = useState(cars.location)
-    const[userId,setUserId]= useState(cars.user)
-    const[PPM,setPPM] = useState(cars.PPM)
+    const [brand, setBrand] = useState(cars.brand)
+    const [model, setModel] = useState(cars.model)
+    const [year, setYear] = useState(cars.year)
+    const [price, setPrice] = useState(cars.price)
+    const [location, setLocation] = useState(cars.location)
+    const [userId, setUserId] = useState(cars.user)
+    const [PPM, setPPM] = useState(cars.PPM)
 
     useEffect(() => {
         if (isSuccess || isDelSuccess) {
@@ -64,22 +67,22 @@ const EditCarForm = ({cars,users =[]}) => {
     const canSave = [brand, model, year, price, location, PPM].every(Boolean) && !isLoading
 
     const onSaveCarClicked = async (e) => {
-       
-        if(canSave) {
-            await updateCars({id: cars.id, user: userId, brand, model, year, price, location, PPM})
+
+        if (canSave) {
+            await updateCars({ id: cars.id, user: userId, brand, model, year, price, location, PPM })
         }
     }
 
     const onDeleteCarClicked = async (e) => {
-        await deleteCar({id: cars.id})
+        await deleteCar({ id: cars.id })
     }
 
     const options = users.map(user => {
-        return(
+        return (
             <option key={user.id} value={user.id}>
                 {user.username}
             </option>
-        
+
         )
     })
 
@@ -92,112 +95,119 @@ const EditCarForm = ({cars,users =[]}) => {
     const validPPMClass = !PPM ? 'form__input--incomplete' : ''
 
 
-    const errContent = ( error?.data?.message || delerror?.data?.message) ?? ''
+    const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
-    const content = (
-            <> 
-              <p className={errClass}>{errContent}</p>
-
-        <form className="form" onSubmit={e=>e.preventDefault()}>
-            <div className="form__title-row">
-            <h2>Edit Car </h2>
-            <div className="form__action-buttons">
-                <button 
-                className="form__save-button"
-                title="Save"
-                onClick={onSaveCarClicked}
-                disabled={!canSave}
-                >
-                    <FontAwesomeIcon icon={faSave} />
-                </button>
-                <button
-                className="form__delete-button"
+    let deleteButton = null
+    if (isAdmin) {
+        deleteButton = (
+            <button
+                classname="icon-button"
                 title="Delete"
                 onClick={onDeleteCarClicked}
-                >
-                    <FontAwesomeIcon icon={faTrashCan} />
-                </button>       
-                 </div>
-            </div>
-            <label className="form__label" htmlFor="brand">
-                Brand:
-            </label>
-            <input
-                className={`form__input ${validBrandClass}`}
-                type="text"
-                id="brand"
-                name="brand"
-                value={brand}
-                onChange={onBrandChanged}
-            />
-            <label className="form__label" htmlFor="model">
-                Model:
-            </label>
-            <input
-                className={`form__input ${validModelClass}`}
-                type="text"
-                id="model"
-                name="model"
-                value={model}
-                onChange={onModelChanged}
-            />
-            <label className="form__label" htmlFor="year">
-                Year:
-            </label>
-            <input
-                className={`form__input ${validYearClass}`}
-                type="text"
-                id="year"
-                name="year"
-                value={year}
-                onChange={onYearChanged}
-            />
-            <label className="form__label" htmlFor="price">
-                Price:
-            </label>
-            <input
-                className={`form__input ${validPriceClass}`}
-                type="text"
-                id="price"
-                name="price"
-                value={price}
-                onChange={onPriceChanged}
-            />
-            <label className="form__label" htmlFor="location">
-                Location:
-            </label>
-            <input
-                className={`form__input ${validLocationClass}`}
-                type="text"
-                id="location"
-                name="location"
-                value={location}
-                onChange={onLocationChanged}
-            />
-            <label className="form__label" htmlFor="PPM">
-                Price Per Mile:
-            </label>
-            <input
-                className={`form__input ${validPPMClass}`}
-                type="text"
-                id="PPM"
-                name="PPM"
-                value={PPM}
-                onChange={onPPMChanged}
-            />
-            <label className="form__label" htmlFor="user">
-                User:
-            </label>
-            <select
-                className="form__input"
-                id="user"
-                name="user"
-                value={userId}
-                onChange={onUserIdChanged}
             >
-                {options}
-            </select>
-            
+                <FontAwesomeIcon icon={faTrashCan} />
+            </button>
+        )
+    }
+
+    const content = (
+        <>
+            <p className={errClass}>{errContent}</p>
+
+            <form className="form" onSubmit={e => e.preventDefault()}>
+                <div className="form__title-row">
+                    <h2>Edit Car </h2>
+                    <div className="form__action-buttons">
+                        <button
+                            className="form__save-button"
+                            title="Save"
+                            onClick={onSaveCarClicked}
+                            disabled={!canSave}
+                        >
+                            <FontAwesomeIcon icon={faSave} />
+                        </button>
+                        {deleteButton}
+                    </div>
+                </div>
+                <label className="form__label" htmlFor="brand">
+                    Brand:
+                </label>
+                <input
+                    className={`form__input ${validBrandClass}`}
+                    type="text"
+                    id="brand"
+                    name="brand"
+                    value={brand}
+                    onChange={onBrandChanged}
+                />
+                <label className="form__label" htmlFor="model">
+                    Model:
+                </label>
+                <input
+                    className={`form__input ${validModelClass}`}
+                    type="text"
+                    id="model"
+                    name="model"
+                    value={model}
+                    onChange={onModelChanged}
+                />
+                <label className="form__label" htmlFor="year">
+                    Year:
+                </label>
+                <input
+                    className={`form__input ${validYearClass}`}
+                    type="text"
+                    id="year"
+                    name="year"
+                    value={year}
+                    onChange={onYearChanged}
+                />
+                <label className="form__label" htmlFor="price">
+                    Price:
+                </label>
+                <input
+                    className={`form__input ${validPriceClass}`}
+                    type="text"
+                    id="price"
+                    name="price"
+                    value={price}
+                    onChange={onPriceChanged}
+                />
+                <label className="form__label" htmlFor="location">
+                    Location:
+                </label>
+                <input
+                    className={`form__input ${validLocationClass}`}
+                    type="text"
+                    id="location"
+                    name="location"
+                    value={location}
+                    onChange={onLocationChanged}
+                />
+                <label className="form__label" htmlFor="PPM">
+                    Price Per Mile:
+                </label>
+                <input
+                    className={`form__input ${validPPMClass}`}
+                    type="text"
+                    id="PPM"
+                    name="PPM"
+                    value={PPM}
+                    onChange={onPPMChanged}
+                />
+                <label className="form__label" htmlFor="user">
+                    User:
+                </label>
+                <select
+                    className="form__input"
+                    id="user"
+                    name="user"
+                    value={userId}
+                    onChange={onUserIdChanged}
+                >
+                    {options}
+                </select>
+
 
 
 
@@ -205,13 +215,13 @@ const EditCarForm = ({cars,users =[]}) => {
             </form>
 
 
-            
-            </>
-      
+
+        </>
+
     )
     return content
 
-    
+
 
 }
 

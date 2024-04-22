@@ -1,10 +1,12 @@
 import { useGetcarsQuery } from "./carsApiSlice";
 import  Car  from "./Car";
-
+import useAuth from "../../hooks/useAuth"
 
 
 
 const CarsList = () => {
+    const {username, isEmployee, isAdmin } = useAuth()
+
     const {
         data: cars,
         isLoading,
@@ -27,10 +29,16 @@ const CarsList = () => {
     }
 
     if (isSuccess) {
-        const { ids } = cars;
-        const tableContent = ids?.length
-            ? ids.map(carId => <Car key={carId} carId={carId} />)
-            : null;
+        const { ids, entities } = cars;
+
+        let filteredIds
+        if (isEmployee || isAdmin) {
+            filteredIds = [...ids]
+        } else {
+            filteredIds = ids.filter(noteId => entities[noteId].username === username)
+        }
+
+        const tableContent = ids?.length && filteredIds.map(carId => <Car key={carId} carId={carId} />)
 
         content = (
             <table className="table table--cars">
