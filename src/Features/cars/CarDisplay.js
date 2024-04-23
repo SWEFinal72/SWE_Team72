@@ -45,12 +45,7 @@ const CarDisplay = ({ carId }) => {
                         <div className="value-item">{car.carInfo[0]["pickup"]}</div>
                     </div>
                     <div className="car-info">
-                        <button
-                            className="icon-button table__button"
-                            onClick={handleEdit}
-                        >
-                            <FontAwesomeIcon icon={faPenToSquare} />
-                        </button>
+                       
                     </div>
                 </td>
             </tr>

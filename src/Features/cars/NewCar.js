@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux"
 import { selectAllcars } from "./carsApiSlice"
+import { selectAllUsers } from "../users/usersApiSlice"
 import NewCarForm from "./NewCarForm"
 import { faIgloo } from "@fortawesome/free-solid-svg-icons"
 
 const NewCar = () => {
-   const users = useSelector(selectAllcars)
+   const users = useSelector(selectAllUsers)
 
    if(users.length === 0) {
        return (

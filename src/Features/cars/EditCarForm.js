@@ -64,14 +64,39 @@ const EditCarForm = ({ cars, users = [] }) => {
     const onUserIdChanged = e => setUserId(e.target.value)
 
 
-    const canSave = [brand, model, year, price, location, PPM].every(Boolean) && !isLoading
+     const canSave = [brand, model, year, price, location, PPM].every(Boolean) && !isLoading
 
-    const onSaveCarClicked = async (e) => {
+    // const onSaveCarClicked = async (e) => {
+       
+    //     if(canSave) {
+    //         await updateCars({id: cars.id, user: userId, brand, model, year, price, location, PPM})
+    //     }
+    // }
+   
 
-        if (canSave) {
-            await updateCars({ id: cars.id, user: userId, brand, model, year, price, location, PPM })
-        }
+//     const onSaveCarClicked = async (e) => {
+//     if (canSave) {
+//         await updateCars.mutate({ id: cars.id, user: userId, brand, model, year, price, location, PPM });
+//     }
+// }
+const onSaveCarClicked = async () => {
+    if (canSave) {
+        // Assuming your API expects an object with the structure defined in your schema
+        const updatedCar = {
+            id: cars.id,
+            user: userId,
+            carInfo: {
+                "car-brand": brand,
+                "model": model,
+                "miles": year, // Assuming 'year' is actually the mileage
+                "location": location,
+                "cost-mile": price, // Assuming 'price' is actually the cost per mile
+                // Add other properties as needed
+            }
+        };
+        await updateCars.mutate(updatedCar);
     }
+}
 
     const onDeleteCarClicked = async (e) => {
         await deleteCar({ id: cars.id })

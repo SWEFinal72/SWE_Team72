@@ -26,7 +26,7 @@ const NewCarForm = ({users=[]}) => {
     const [year, setYear] = useState('')
     const [price, setPrice] = useState('')
     const [location, setLocation] = useState('')
-    const[userId,setUserId]= useState(users && users.length > 0 ? users[0].id : '')
+    const[userId,setUserId]= useState(users ? users[0].id : '')
     const [PPM,setPPM] = useState('')
 
     useEffect(() => {
@@ -52,18 +52,41 @@ const NewCarForm = ({users=[]}) => {
     const canSave = [brand, model, year, price, location, PPM].every(Boolean) && !isLoading
 
 
+    // const onSaveCarClicked = async (e) => {
+    //     e.preventDefault()
+    //     if(canSave) {
+    //         try {
+    //             const result = await addNewCar({user: userId, brand, model, year, price, location, PPM})
+    //             console.log(result)
+    //         } catch (err) {
+    //             console.error("Failed to save the car: ", err)
+    //         }
+    //     }
+    // }
+
     const onSaveCarClicked = async (e) => {
-        e.preventDefault()
-        if(canSave) {
+        e.preventDefault();
+        if (canSave) {
             try {
-                const result = await addNewCar({user: userId, brand, model, year, price, location, PPM})
-                console.log(result)
+                const carData = {
+                    carInfo: [{
+                        "car-brand": brand,
+                        "model": model,
+                        "miles": year, // Assuming 'year' is equivalent to 'miles'
+                        "location": location,
+                        "cost-mile": price, // Assuming 'price' is equivalent to 'cost-mile'
+                        "cost-day": "", // You need to handle 'cost-day' separately
+                        "pickup": "" // You need to handle 'pickup' separately
+                    }],
+                    rented: false // Assuming 'rented' should default to 'false' until rented
+                };
+                const result = await addNewCar(carData);
+                console.log(result);
             } catch (err) {
-                console.error("Failed to save the car: ", err)
+                console.error("Failed to save the car: ", err);
             }
         }
-    }
-
+    };
 
     const options = users ? users.map(user => {
         return(
