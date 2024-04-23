@@ -48,7 +48,16 @@ const CarsList = () => {
                     </tr>
                 </thead> */}
                 <tbody>
-                    {tableContent}
+                    <tr>
+                        <td>
+                            <div>
+                            {tableContent}
+                            </div>
+                      
+                        </td>
+                  
+                    </tr>
+                  
                 </tbody>
             </table>
         );
