@@ -6,7 +6,7 @@ import Home from './Components/Home';
 import { BrowserRouter as Router, Routes, Switch, Route } from 'react-router-dom';
 import CarsAndServices from './Components/CarsAndServices';
 import CurrentReservations from './Components/CurrentReservations';
-import Login from './auth/Login';
+import Login from './Features/auth/Login';
 import SignUp from './Components/SignUp';
 import Layout from './Components/Layout';
 import Dashboard from './Components/Dashboard';
@@ -16,7 +16,8 @@ import EditUser from './Features/users/EditUser';
 import NewUserForm from './Features/users/NewUserForm';
 import EditCar from './Features/cars/EditCar';
 import NewCar from './Features/cars/NewCar';
-import Prefetch from './auth/Prefetch';
+import Prefetch from './Features/auth/Prefetch';
+import PersistLogin from './Features/auth/PersistLogin';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="cars_and_services" element={<CarsAndServices />} />
             <Route path ="login" element={<Login />} />
 
+            <Route element={<PersistLogin />}> 
             <Route element={<Prefetch />}> 
             <Route path ="user_dashboard" element={<Dashboard/>} >
                 <Route index element={<UserProfile/>} />
@@ -41,6 +43,7 @@ function App() {
             </Route>
 
             
+            </Route>
             </Route>
             </Route>
             
