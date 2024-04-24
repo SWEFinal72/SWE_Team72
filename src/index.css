@@ -21,6 +21,7 @@
 /* Styling for the items within the nav-links-container */
  .nav-links-container{
   display: flex;
+  margin-left: 25px;
   gap: 25px;
 } 
 
@@ -28,8 +29,20 @@
 .nav-links-container a {
   display: flex;
   color: #FFFFFF;
-  gap: 15px;
+  text-decoration: none;
 } 
+
+.navbar-logo-navlinks {
+  margin-left: 25px;
+}
+
+.navbar-buttons {
+  margin-right: 15px;
+}
+
+.navbar-buttons a {
+  margin-left: 10px;
+}
 
 
 
@@ -51,7 +64,7 @@ width: 100%;
   position: fixed;
   bottom: 0;
   z-index: 1;
-  background-color: green;
+  background-color: #03C03C;
   padding: 0.5em;
   border-top: 1px solid var(--BORDER-COLOR);
   display: flex;
