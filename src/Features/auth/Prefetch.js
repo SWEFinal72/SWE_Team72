@@ -1,6 +1,6 @@
-import {store} from '../app/store';
-import { usersApiSlice } from '../Features/users/usersApiSlice';
-import { carsApiSlice } from '../Features/cars/carsApiSlice';
+import {store} from '../../app/store';
+import { usersApiSlice } from '../users/usersApiSlice';
+import { carsApiSlice } from '../cars/carsApiSlice';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 

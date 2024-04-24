@@ -13,7 +13,7 @@ const CarsList = () => {
         isSuccess,
         isError,
         error
-    } = useGetcarsQuery(undefined,{
+    } = useGetcarsQuery(CarsList,{
         pollingInterval: 15000,
         refetchOnMountOrArgChange: true,
         refetchOnFocus: true
