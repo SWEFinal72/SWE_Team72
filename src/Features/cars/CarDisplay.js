@@ -3,7 +3,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import {useSelector} from 'react-redux';
 import { selectCarById } from "./carsApiSlice";
-
+import AddNewCarButton from "../../Components/AddNewCarButton";
 
 const CarDisplay = ({ carId }) => {
     const car = useSelector(state => selectCarById(state, carId));
@@ -45,7 +45,7 @@ const CarDisplay = ({ carId }) => {
                         <div className="value-item">{car.carInfo[0]["pickup"]}</div>
                     </div>
                     <div className="car-info">
-                       
+                       <AddNewCarButton />
                     </div>
                 </td>
             </tr>
