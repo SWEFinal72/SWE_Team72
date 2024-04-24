@@ -31,9 +31,7 @@ const UsersList = () => {
 
         const { ids } = users
 
-        const tableContent = ids?.length
-            ? ids.map(userId => <User key={userId} userId={userId} />)
-            : null
+        const tableContent = ids?.length && ids.map(userId => <User key={userId} userId={userId} />)
 
         content = (
           //change this to possibly assign cars to users
