@@ -6,17 +6,17 @@ const useAuth = () => {
     const token = useSelector(selectCurrentToken)
     let isEmployee = false
     let isAdmin = false
-    let status = "User"
+    let status = "user"
 
     if(token) {
         const decoded = jwtDecode(token)
         const { username, roles } = decoded.UserInfo
 
-        isEmployee = roles.includes('Employee')
-        isAdmin = roles.includes('Admin')
+        isEmployee = roles.includes('employee')
+        isAdmin = roles.includes('admin')
 
-        if(isEmployee) status = "Employee"
-        if(isAdmin) status = "Admin"
+        if(isEmployee) status = "employee"
+        if(isAdmin) status = "admin"
 
         return { username, roles, status, isEmployee, isAdmin }
     }
